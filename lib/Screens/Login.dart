@@ -1,3 +1,4 @@
+import 'package:derm_aid/Screens/DoctorSearch.dart';
 import 'package:derm_aid/Screens/Reminders.dart';
 import 'package:flutter/material.dart';
 
@@ -18,12 +19,23 @@ class _LogInState extends State<LogIn> {
         height: size.height,
         color: Colors.green,
         child: Center(
-          child: ElevatedButton(
-            child: Text('Reminder'),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Reminders()));
-            },
-          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                child: Text('Reminder'),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Reminders()));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Doctor search'),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorSearch()));
+                },
+              ),
+            ],
+          )
         )
       ),
     );
