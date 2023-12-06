@@ -1,3 +1,5 @@
+import 'package:derm_aid/Data/Const.dart';
+import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
 class DoctorSearch extends StatefulWidget {
@@ -8,11 +10,12 @@ class DoctorSearch extends StatefulWidget {
 }
 
 class _DoctorSearchState extends State<DoctorSearch> {
+
   @override
   Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
     return Scaffold(
       body: CustomScrollView(
-
         slivers: [
           SliverAppBar(
             leadingWidth: 80,
@@ -40,64 +43,8 @@ class _DoctorSearchState extends State<DoctorSearch> {
             pinned: true,
             backgroundColor: Color.fromRGBO(19, 35, 70, 1),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(60),
-              child: Container(
-                width: double.maxFinite,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                margin: EdgeInsets.only(left: 25,right: 25,bottom: 15,top: 15),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10))
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 0,horizontal: 20),
-
-                          child: TextField(
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Color.fromRGBO(128, 119, 137, 1)
-                            ),
-                            decoration: InputDecoration(
-
-                              hintText: "Search Doctor",
-                                border: InputBorder.none,
-
-                              hintStyle: TextStyle(
-                                color: Color.fromRGBO(128, 119, 137, 1),
-                              )
-                            ),
-
-                        ),
-                      ),
-                      flex: 8,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(74, 213, 205, 1),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10))
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                        ),
-                      ),
-                      flex: 2,
-                    )
-                  ],
-                  
-                ),
-              ),
+              preferredSize: Size.fromHeight(70),
+              child: Search(hint: "Search Docotor"),
             ),
             flexibleSpace: FlexibleSpaceBar(
 
@@ -140,22 +87,35 @@ class _DoctorSearchState extends State<DoctorSearch> {
             ),
           ),
 
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (_, int index) {
-                return ListTile(
-                  leading: Container(
-                      padding: EdgeInsets.all(8),
-                      width: 100,
-                      child: Placeholder()),
-                  title: Text('Place ${index + 1}', textScaleFactor: 2),
-                );
-              },
-              childCount: 20,
+          SliverToBoxAdapter(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(19, 35, 70, 1)
+              ),
+              height: size.height*0.2*DoctorCardData().Doctors.length,
+              width: double.infinity,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25)),
+                  color: Colors.white
+                ),
+                padding: EdgeInsets.only(top: 20),
+                child: ListView.builder(
+                  itemCount: DoctorCardData().Doctors.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,index){
+                    return DoctorCard(index: index,size: size,data:DoctorCardData().Doctors[index]);
+                  },
+                ),
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 }
+
+
+
