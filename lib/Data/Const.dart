@@ -1,3 +1,7 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class DoctorCardData{
   final List<Map>Doctors=[
     {
@@ -65,4 +69,25 @@ class DoctorCardData{
     },
 
   ];
+}
+class FeatureData{
+final List<Map<String,dynamic>> feature=[
+  {
+    'text':"Scan",
+    'icon':FontAwesomeIcons.search,
+  },
+  {
+    'text':"Reports",
+    'icon':Icons.bar_chart,
+  },
+  {
+    'text':"Reminder",
+    'icon':Icons.notifications_active,
+  },
+  {
+    'text':"Consult",
+    'icon':FontAwesomeIcons.userDoctor,
+  },
+
+];
 }

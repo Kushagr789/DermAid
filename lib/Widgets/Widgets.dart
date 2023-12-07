@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -188,4 +190,139 @@ class Rating extends StatelessWidget{
       ),
     );
   }
+}
+
+class Carousel extends StatefulWidget{
+  @override
+  State<Carousel> createState() => _CarouselState();
+}
+
+class _CarouselState extends State<Carousel> {
+  int currentIndex=0;
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: [
+        CarouselSlider.builder(
+            itemCount: 3,
+            options: CarouselOptions(
+              viewportFraction: 1,
+              autoPlay: true,
+              onPageChanged: (index,reason)
+                {
+                  setState(() {
+                    currentIndex=index;
+                  });
+                }
+            ),
+            itemBuilder: (context,int index,int a){
+              return Container(
+                width: 500,
+                height: 200,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq7O2KSYHMedN0AYqrYvjnpDtnVCWZpbNVYA&usqp=CAU",),
+                    fit: BoxFit.cover,
+                    opacity: 0.86
+                  ),
+                  borderRadius: BorderRadius.circular(17),
+                  border: Border.all(
+                    color: Color.fromRGBO(175, 175, 175, 1),
+                    strokeAlign: BorderSide.strokeAlignOutside,
+                    width: 1
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      blurRadius: 4,
+                      offset: Offset(0,4),
+                    )
+                  ]
+                ),
+              );
+            }
+
+        ),
+        DotsIndicator(dotsCount: 3,position: currentIndex,
+        decorator: DotsDecorator(
+          color: Color.fromRGBO(175, 175, 175, 1),
+          activeColor: Color.fromRGBO(74, 213, 205, 1),
+
+        ),
+        )
+      ],
+    );
+  }
+}
+
+class FeatureCard extends StatelessWidget{
+  final String text;
+  final icon;
+  final size;
+
+  const FeatureCard({super.key,required this.text,required this.icon,this.size});
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.loose,
+      children: [
+
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            margin: EdgeInsets.only(top: 5),
+            height: size.height*0.21,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color.fromRGBO(249, 249, 249, 1),
+              border: Border.all(color: Color.fromRGBO(236, 236, 236, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(190, 190, 190, 0.25),
+                  offset: Offset(0,3),
+                  blurRadius: 4
+                )
+              ]
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          height: 70,
+          width: 70,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(74, 213, 205, 1),
+            borderRadius: BorderRadius.circular(35),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(190, 190, 190, 0.25),
+                offset: Offset(0,3),
+                blurRadius: 4
+              )
+            ],
+              border: Border.all(color: Color.fromRGBO(241, 241, 241, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1)
+          ),
+          child: Center(
+            child: Icon(
+              icon,size: 30,color: Colors.white,
+            ),
+          ),
+        ),
+
+
+
+      ],
+    );
+  }
+
 }

@@ -1,3 +1,4 @@
+import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/DoctorSearch.dart';
 import 'package:derm_aid/Screens/Reminders.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,12 @@ class _LogInState extends State<LogIn> {
                 child: Text('Doctor search'),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorSearch()));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Dashboard'),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
                 },
               ),
             ],
