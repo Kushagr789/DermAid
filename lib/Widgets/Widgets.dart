@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -142,7 +143,7 @@ class DoctorCard extends StatelessWidget{
                       Container(
                         child: Row(
                           children: [
-                            Rating(rating: data['rating']),
+                            Rating(rating: data['rating'],size: 14),
                             Text(" "+data['rating'].toString(),
                               style: TextStyle(
                                   fontSize: 14,
@@ -175,15 +176,16 @@ class DoctorCard extends StatelessWidget{
 
 class Rating extends StatelessWidget{
   final   rating;
+  final size;
 
-  const Rating({super.key,required this.rating});
+  const Rating({super.key,required this.rating,required this.size});
 
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
       itemCount: 5,
       rating: rating,
-      itemSize: 14,
+      itemSize: size,
       itemBuilder: (context,_)=>const Icon(
         Icons.star,
         color: Color.fromRGBO(255, 177, 0, 1),
@@ -325,4 +327,265 @@ class FeatureCard extends StatelessWidget{
     );
   }
 
+}
+
+class DateSelect extends StatefulWidget{
+  @override
+  State<DateSelect> createState() => _DateSelectState();
+}
+
+class _DateSelectState extends State<DateSelect> {
+  var focusedDay=DateTime.now();
+  @override
+  Widget build(BuildContext context) {
+    return EasyInfiniteDateTimeLine(
+      showTimelineHeader: false,
+        firstDate: DateTime.now(),onDateChange: (selectedDate){
+          setState(() {
+            focusedDay=selectedDate;
+          });
+        },
+        focusDate: focusedDay, lastDate: DateTime(2025),
+        dayProps: EasyDayProps(
+
+          todayStyle: DayStyle(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(206,208, 211, 1),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            dayNumStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 26,
+                fontWeight: FontWeight.w600
+            ),
+            dayStrStyle: TextStyle(
+                color: Color.fromRGBO(119, 128, 137, 1),
+                fontSize: 18
+            ),
+          ),
+          dayStructure: DayStructure.dayStrDayNum,
+          activeDayStyle: DayStyle(
+            dayNumStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.w600
+            ),
+            dayStrStyle:  TextStyle(
+                color: Colors.white,
+                fontSize: 18
+            ),
+            decoration: BoxDecoration(
+        color: Color.fromRGBO(74, 213, 205, 1),
+        borderRadius: BorderRadius.circular(50.0),
+        boxShadow: [
+          BoxShadow(
+              color: Color.fromRGBO(206,208, 211, 1),
+              blurRadius: 4
+          )
+        ]
+    ),
+          ),
+          inactiveDayStyle: DayStyle(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(206,208, 211, 1),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            dayNumStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 26,
+                fontWeight: FontWeight.w600
+            ),
+            dayStrStyle: TextStyle(
+                color: Color.fromRGBO(119, 128, 137, 1),
+                fontSize: 18
+            ),
+          )
+        ),
+    );
+  }
+}
+
+class TimeSelect extends StatefulWidget{
+  @override
+  State<TimeSelect> createState() => _TimeSelectState();
+}
+
+class _TimeSelectState extends State<TimeSelect> {
+  var selected=0;
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      direction: Axis.horizontal,
+      alignment: WrapAlignment.start,
+      spacing: 15,
+      runSpacing: 15,
+      children: [
+        InkWell(
+          onTap:() {
+            setState(() {
+              selected=0;
+            });
+          },
+          child: Container(
+            width: 100,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: (selected==0)?Color.fromRGBO(74, 213, 205, 1):Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0,0, 0, 0.25),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            child: Center(
+              child: Text("10:00 AM",
+                style: TextStyle(
+                  color: (selected==0)?Colors.white:Color.fromRGBO(119, 128, 137, 1),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap:() {
+            setState(() {
+              selected=1;
+            });
+          },
+          child: Container(
+            width: 100,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: (selected==1)?Color.fromRGBO(74, 213, 205, 1):Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0,0, 0, 0.25),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            child: Center(
+              child: Text("11:00 AM",
+                style: TextStyle(
+                    color: (selected==1)?Colors.white:Color.fromRGBO(119, 128, 137, 1),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap:() {
+            setState(() {
+              selected=2;
+            });
+          },
+          child: Container(
+            width: 100,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: (selected==2)?Color.fromRGBO(74, 213, 205, 1):Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0,0, 0, 0.25),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            child: Center(
+              child: Text("12:00 PM",
+                style: TextStyle(
+                    color: (selected==2)?Colors.white:Color.fromRGBO(119, 128, 137, 1),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap:() {
+            setState(() {
+              selected=3;
+            });
+          },
+          child: Container(
+            width: 100,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: (selected==3)?Color.fromRGBO(74, 213, 205, 1):Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0,0, 0, 0.25),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            child: Center(
+              child: Text("01:00 PM",
+                style: TextStyle(
+                    color: (selected==3)?Colors.white:Color.fromRGBO(119, 128, 137, 1),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap:() {
+            setState(() {
+              selected=4;
+            });
+          },
+          child: Container(
+            width: 100,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: (selected==4)?Color.fromRGBO(74, 213, 205, 1):Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0,0, 0, 0.25),
+                      blurRadius: 4
+                  )
+                ]
+            ),
+            child: Center(
+              child: Text("02:00 PM",
+                style: TextStyle(
+                    color: (selected==4)?Colors.white:Color.fromRGBO(119, 128, 137, 1),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ),
+        ),
+
+
+      ],
+
+    );
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/DoctorSearch.dart';
 import 'package:derm_aid/Screens/Reminders.dart';
@@ -39,6 +40,12 @@ class _LogInState extends State<LogIn> {
                 child: Text('Dashboard'),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Book Appointment'),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BookAppointment()));
                 },
               ),
             ],
