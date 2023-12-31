@@ -1,8 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/DoctorSearch.dart';
 import 'package:derm_aid/Screens/Reminders.dart';
 import 'package:flutter/material.dart';
+
+import 'CameraScan.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -46,6 +49,12 @@ class _LogInState extends State<LogIn> {
                 child: Text('Book Appointment'),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>BookAppointment()));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Camera'),
+                onPressed: ()async{
+                  await availableCameras().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraScan(cameras: value))));
                 },
               ),
             ],
