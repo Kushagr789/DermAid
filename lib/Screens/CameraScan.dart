@@ -19,7 +19,7 @@ class _CameraScanState extends State<CameraScan> {
 
   late CameraController _cameraController;
   bool _isRearCameraSelected=true;
-  double zoom=0.0;
+  double zoom=1.0;
 
   @override
   void dispose() {
@@ -131,48 +131,7 @@ class _CameraScanState extends State<CameraScan> {
                       currentStepColor: Color.fromRGBO(74, 213, 205, 1),
                       inactiveColor: Color.fromRGBO(188, 188, 188, 1),
                       lineWidth: 1,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10,right: 20),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'PATIENT INFO',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(76, 239, 19, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300
-                              ),
-                            ),
-                            Text(
-                              'IMAGE',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(74, 213, 205, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300
-                              ),
-                            ),
-                            Text(
-                              'ANALYSIS',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(188, 188, 188, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300
-                              ),
-                            ),
-                            Text(
-                              'RESULT',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(188, 188, 188, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300
-                              ),
-                            )
-                          ],
-                      ),
-                    )
-                  ],
+                    ),],
                 ),
               ),
             ),
@@ -198,9 +157,9 @@ class _CameraScanState extends State<CameraScan> {
                         children: [
                           IconButton(onPressed: (){
                             setState(() {
-                              (zoom>=1.0)?zoom=zoom-1.0:zoom;
-                              _cameraController.setZoomLevel(zoom);
+                              (zoom>1.0)?zoom=zoom-1.0:zoom;
                             });
+                            _cameraController.setZoomLevel(zoom);
                           },
                             icon: Icon(
                               FontAwesomeIcons.minus,
@@ -216,15 +175,16 @@ class _CameraScanState extends State<CameraScan> {
                             onChanged: (value){
                             setState(() {
                               zoom=value;
-                              _cameraController.setZoomLevel(zoom);
+
                             });
+                            _cameraController.setZoomLevel(zoom);
                             },
                             ),
                           IconButton(onPressed: (){
                             setState(() {
                               (zoom<8.0)?zoom=zoom+1.0:zoom;
-                              _cameraController.setZoomLevel(zoom);
                             });
+                            _cameraController.setZoomLevel(zoom);
                           },
                             icon: Icon(
                               FontAwesomeIcons.plus,

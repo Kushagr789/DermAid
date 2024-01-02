@@ -45,6 +45,7 @@ dependencies:
   dots_indicator: ^3.0.0
   easy_date_timeline: ^1.0.2
   camera: ^0.10.5+7
+  easy_stepper: ^0.8.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
