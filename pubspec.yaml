@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ">=3.1.2 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -46,6 +46,7 @@ dependencies:
   easy_date_timeline: ^1.0.2
   camera: ^0.10.5+7
   easy_stepper: ^0.8.3
+  fl_chart: ^0.66.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

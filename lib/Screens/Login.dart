@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/DoctorSearch.dart';
+import 'package:derm_aid/Screens/Profile.dart';
 import 'package:derm_aid/Screens/Reminders.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +57,12 @@ class _LogInState extends State<LogIn> {
                 onPressed: ()async{
                   await availableCameras().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraScan(cameras: value))));
                 },
+              ),
+              ElevatedButton(
+                child: Text('Profile'),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+                }
               ),
             ],
           )
