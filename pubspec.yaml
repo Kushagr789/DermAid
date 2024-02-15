@@ -47,21 +47,16 @@ dependencies:
   camera: ^0.10.5+7
   easy_stepper: ^0.8.3
   fl_chart: ^0.66.0
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.4
+  activout_firebase_options_selector:
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter packages.
 flutter:
 
   # The following line ensures that the Material Icons font is

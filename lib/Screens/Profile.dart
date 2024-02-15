@@ -50,7 +50,6 @@ class _ProfileState extends State<Profile> {
               BioData(),
               DiseaseReview(),
               Medicine(size: size,),
-
             ],
           )
         ),

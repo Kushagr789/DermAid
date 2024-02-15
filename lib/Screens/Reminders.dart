@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 import 'package:table_calendar/table_calendar.dart';
@@ -22,7 +21,6 @@ class _RemindersState extends State<Reminders> {
   DateTime _focusedDate=DateTime.now();
   DateTime? _selectedDate;
   late ScrollController scrollController;
-  CalendarFormat _calendarFormat=CalendarFormat.week;
 
   String medName="",medPower="",medQuantity="";
   var _isExpanded=false;
@@ -99,7 +97,7 @@ class _RemindersState extends State<Reminders> {
                     daysOfWeekHeight: 20,
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     firstDay: DateTime(2022),
-                    lastDay: DateTime(2024),
+                    lastDay: DateTime(2025),
                     focusedDay: _focusedDate,
                     onDaySelected: (selectedDate,focusedDay){
                       if(!isSameDay(_selectedDate, selectedDate)){
@@ -175,7 +173,7 @@ class _RemindersState extends State<Reminders> {
 
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     firstDay: DateTime(2022),
-                    lastDay: DateTime(2024),
+                    lastDay: DateTime(2025),
                     focusedDay: _focusedDate,
                     onDaySelected: (selectedDate,focusedDay){
                       if(!isSameDay(_selectedDate, selectedDate)){
@@ -256,7 +254,6 @@ class _RemindersState extends State<Reminders> {
                       },
                       child: Container(
                         width: size.width,
-
                         child: Icon(
                           (_isExpanded)?Icons.arrow_drop_up:Icons.arrow_drop_down,size: 30,color: Colors.white,
                         ),

@@ -1,4 +1,5 @@
 import 'package:derm_aid/Data/Const.dart';
+import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -105,7 +106,11 @@ class _DoctorSearchState extends State<DoctorSearch> {
                   itemCount: DoctorCardData().Doctors.length,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context,index){
-                    return DoctorCard(index: index,size: size,data:DoctorCardData().Doctors[index]);
+                    return InkWell(child: DoctorCard(index: index,size: size,data:DoctorCardData().Doctors[index]),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>BookAppointment()));
+                            },
+                    );
                   },
                 ),
               ),

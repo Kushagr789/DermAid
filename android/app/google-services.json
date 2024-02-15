@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "534527630882",
+    "project_id": "dermaid-67a70",
+    "storage_bucket": "dermaid-67a70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534527630882:android:cfc813bd2337fa9729747b",
+        "android_client_info": {
+          "package_name": "com.example.derm_aid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

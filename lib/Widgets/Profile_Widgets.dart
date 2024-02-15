@@ -223,7 +223,6 @@ class BioData extends StatelessWidget {
     );
   }
 }
-
 class DiseaseReview extends StatelessWidget {
   const DiseaseReview({super.key});
 

@@ -1,8 +1,14 @@
+import 'package:camera/camera.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../Screens/CameraScan.dart';
+import '../Screens/DoctorSearch.dart';
+import '../Screens/Profile.dart';
+import '../Screens/Reminders.dart';
 
 class Search extends StatelessWidget{
   final String hint;
@@ -273,50 +279,76 @@ class FeatureCard extends StatelessWidget{
 
         Align(
           alignment: Alignment.center,
+          child: InkWell(
+            onTap: (text=="Scan")?() async{
+              await availableCameras().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraScan(cameras: value))));
+            }:
+            (){
+              if(text=="Reports")
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+              else if(text=="Reminder")
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Reminders()));
+              else
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorSearch()));
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 5),
+              height: size.height*0.21,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromRGBO(249, 249, 249, 1),
+                border: Border.all(color: Color.fromRGBO(236, 236, 236, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(190, 190, 190, 0.25),
+                    offset: Offset(0,3),
+                    blurRadius: 4
+                  )
+                ]
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: (text=="Scan")?() async{
+            await availableCameras().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraScan(cameras: value))));
+          }:
+              (){
+            if(text=="Reports")
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+            else if(text=="Reminder")
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Reminders()));
+            else
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorSearch()));
+          },
           child: Container(
-            margin: EdgeInsets.only(top: 5),
-            height: size.height*0.21,
+            height: 70,
+            width: 70,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color.fromRGBO(249, 249, 249, 1),
-              border: Border.all(color: Color.fromRGBO(236, 236, 236, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1),
+              color: Color.fromRGBO(74, 213, 205, 1),
+              borderRadius: BorderRadius.circular(35),
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(190, 190, 190, 0.25),
                   offset: Offset(0,3),
                   blurRadius: 4
                 )
-              ]
+              ],
+                border: Border.all(color: Color.fromRGBO(241, 241, 241, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1)
             ),
             child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22
-                ),
+              child: Icon(
+                icon,size: 30,color: Colors.white,
               ),
-            ),
-          ),
-        ),
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(74, 213, 205, 1),
-            borderRadius: BorderRadius.circular(35),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(190, 190, 190, 0.25),
-                offset: Offset(0,3),
-                blurRadius: 4
-              )
-            ],
-              border: Border.all(color: Color.fromRGBO(241, 241, 241, 1),strokeAlign: BorderSide.strokeAlignInside,width: 1)
-          ),
-          child: Center(
-            child: Icon(
-              icon,size: 30,color: Colors.white,
             ),
           ),
         ),

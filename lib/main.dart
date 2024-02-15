@@ -1,10 +1,12 @@
 import 'package:derm_aid/Screens/SplashScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp
@@ -13,10 +15,10 @@ void main() {
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
