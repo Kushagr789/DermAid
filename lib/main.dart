@@ -1,3 +1,4 @@
+import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/SplashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
+  //await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: Dashboard()//SplashScreen(),
     );
   }
 }
