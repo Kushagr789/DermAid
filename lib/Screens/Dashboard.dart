@@ -21,7 +21,9 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return Scaffold(
-      //drawer: Drawer(child: DrawerWidget()),
+      drawer: Drawer(
+        child: DrawerWidget()
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -187,11 +189,7 @@ class _DashboardState extends State<Dashboard> {
                           }
                       ),
                     ),
-                    ElevatedButton(onPressed: (){
-                      AuthServices().logOut();
-                      Login_shared_preference().logout();
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LogIn()));
-                    }, child: Text("logout"))
+
                   ],
                 ),
               ),

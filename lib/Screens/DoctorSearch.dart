@@ -3,6 +3,8 @@ import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../Widgets/Drawer.dart';
+
 class DoctorSearch extends StatefulWidget {
   const DoctorSearch({super.key});
 
@@ -16,12 +18,22 @@ class _DoctorSearchState extends State<DoctorSearch> {
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return Scaffold(
+      drawer: Drawer(
+          child: DrawerWidget()
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             leadingWidth: 80,
-            leading: IconButton(onPressed: (){},
-                icon: Icon(Icons.menu,color: Colors.white,size: 40,)
+            leading: Builder(
+              builder: (BuildContext context) {
+                return GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Icon(Icons.menu,color: Colors.white,size: 40,),
+                );
+              },
             ),
             centerTitle: true,
             title: Text(
