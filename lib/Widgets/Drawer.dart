@@ -7,12 +7,22 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Drawer(
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            child: Text("Hello"),
-            decoration: BoxDecoration(
-              color: Colors.red,
-            ),
+          DrawerHeader(child: Text("header")),
+          ListTile(
+            title: const Text('Item 1'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('Item 2'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
           ),
         ],
       ),

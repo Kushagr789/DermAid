@@ -49,6 +49,7 @@ dependencies:
   fl_chart: ^0.66.0
   firebase_core: ^2.25.4
   firebase_auth: ^4.17.4
+  mongo_dart: ^0.10.0
   activout_firebase_options_selector:
 dev_dependencies:
   flutter_test:

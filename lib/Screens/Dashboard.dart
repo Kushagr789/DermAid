@@ -4,6 +4,7 @@ import 'package:derm_aid/Screens/CameraScan.dart';
 import 'package:derm_aid/Screens/LogIn.dart';
 import 'package:derm_aid/Services/auth.dart';
 import 'package:derm_aid/Services/shared_preference.dart';
+import 'package:derm_aid/Widgets/Drawer.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,14 +21,23 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return Scaffold(
+      //drawer: Drawer(child: DrawerWidget()),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             leadingWidth: 80,
-            leading: IconButton(onPressed: (){},
-                icon: Icon(Icons.menu,color: Colors.white,size: 40,)
+            leading: Builder(
+              builder: (BuildContext context) {
+                return GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Icon(Icons.menu,color: Colors.white,size: 40,),
+                );
+              },
             ),
             centerTitle: true,
+
             title: Text(
               "Hello Kush!",
               style: TextStyle(
