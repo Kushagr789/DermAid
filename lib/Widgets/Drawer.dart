@@ -1,3 +1,4 @@
+import 'package:derm_aid/Screens/UserProfile.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/LogIn.dart';
@@ -23,21 +24,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               color: Color.fromRGBO(19, 35, 70, 1)
             ),
             padding: EdgeInsets.zero,
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/download (7).jpg',),
-                  ),
-                  Text('Kush Saxena',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w600),),
-                  Text('kush@gmail.com',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,))
-                ],
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile()));
+              },
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage('assets/images/download (7).jpg',),
+                    ),
+                    Text('Kush Saxena',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w600),),
+                    Text('kush@gmail.com',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,))
+                  ],
+                ),
               ),
             ),
           ),

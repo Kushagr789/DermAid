@@ -81,6 +81,7 @@ class UserInfo extends StatelessWidget {
     );
   }
 }
+
 class BioData extends StatelessWidget {
   const BioData({super.key});
 
@@ -223,6 +224,7 @@ class BioData extends StatelessWidget {
     );
   }
 }
+
 class DiseaseReview extends StatelessWidget {
   const DiseaseReview({super.key});
 
@@ -377,6 +379,7 @@ class DiseaseReview extends StatelessWidget {
     );
   }
 }
+
 class Medicine extends StatelessWidget {
   final size;
   const Medicine({super.key,required this.size});

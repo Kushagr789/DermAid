@@ -204,7 +204,6 @@ class Carousel extends StatefulWidget{
   @override
   State<Carousel> createState() => _CarouselState();
 }
-
 class _CarouselState extends State<Carousel> {
   int currentIndex=0;
   @override
@@ -365,7 +364,6 @@ class DateSelect extends StatefulWidget{
   @override
   State<DateSelect> createState() => _DateSelectState();
 }
-
 class _DateSelectState extends State<DateSelect> {
   var focusedDay=DateTime.now();
   @override
@@ -453,8 +451,7 @@ class TimeSelect extends StatefulWidget{
   @override
   State<TimeSelect> createState() => _TimeSelectState();
 }
-
-class _TimeSelectState extends State<TimeSelect> {
+class _TimeSelectState extends State<TimeSelect>  {
   var selected=0;
   @override
   Widget build(BuildContext context) {

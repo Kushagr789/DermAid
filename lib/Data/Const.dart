@@ -91,3 +91,30 @@ final List<Map<String,dynamic>> feature=[
 
 ];
 }
+
+class UserProfileData{
+  List<String> aboutOpt=[
+    "Gender",
+    "Date Of Birth",
+    "Height(cm)",
+    "Weight(kg)"
+  ];
+  List<String> aboutVal=[
+    "Male",
+    "21/09/2022",
+    "180",
+    "62"
+  ];
+  List<String> otherOpt=[
+    "Medicine per day",
+    "Diagnosis per week",
+    "Get in bed",
+    "Wake Up"
+  ];
+  List<String> otherVal=[
+    "4",
+    "2",
+    "10:00 pm",
+    "06:00 am"
+  ];
+}

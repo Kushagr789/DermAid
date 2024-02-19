@@ -1,5 +1,6 @@
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/SplashScreen.dart';
+import 'package:derm_aid/Screens/UserProfile.dart';
 import 'package:derm_aid/Services/Database/MongoDb.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
-  //await MongoDatabase.connect();
+  await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
+  await MongoDatabase.connect();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Dashboard()//SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
