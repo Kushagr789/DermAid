@@ -16,6 +16,7 @@ class _UserProfileState extends State<UserProfile> {
     final size=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         toolbarHeight: 30,
         leading: IconButton(
           onPressed: (){

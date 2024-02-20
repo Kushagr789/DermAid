@@ -2,10 +2,8 @@
 
 import 'package:camera/camera.dart';
 import 'package:derm_aid/Widgets/NumStepper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'PreviewPage.dart';
 
 class CameraScan extends StatefulWidget {
@@ -27,13 +25,14 @@ class _CameraScanState extends State<CameraScan> {
     _cameraController.dispose();
     super.dispose();
   }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initCamera(widget.cameras![0]);
   }
+
+
   Future takePicture()async{
     if(!_cameraController.value.isInitialized){
       return null;
@@ -42,12 +41,16 @@ class _CameraScanState extends State<CameraScan> {
       return null;
     }
     try{
+
       await _cameraController.setFocusMode(FocusMode.auto);
+
       XFile picture=await _cameraController.takePicture();
+
       Navigator.push(context, MaterialPageRoute(builder: (context)=>PreviewPage(
         picture: picture,
       )));
     }on CameraException catch(e){
+
       debugPrint("Error occured while taking picture: $e");
       return null;
     }
@@ -65,9 +68,10 @@ class _CameraScanState extends State<CameraScan> {
       debugPrint("camera error $e");
     }
   }
+
+
   @override
   Widget build(BuildContext context) {
-
     final size=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -93,7 +97,6 @@ class _CameraScanState extends State<CameraScan> {
       body: SafeArea(
         child: Stack(
           children: [
-
             (_cameraController.value.isInitialized)?
                 Container(
                   width: double.infinity,
@@ -117,7 +120,7 @@ class _CameraScanState extends State<CameraScan> {
               alignment: Alignment.topCenter,
               child: Container(
                 width: double.infinity,
-                height: 100,
+                height: size.height*0.11,
                 color: Color.fromRGBO(39, 39, 39, 1),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,7 +178,6 @@ class _CameraScanState extends State<CameraScan> {
                             onChanged: (value){
                             setState(() {
                               zoom=value;
-
                             });
                             _cameraController.setZoomLevel(zoom);
                             },
@@ -215,8 +217,10 @@ class _CameraScanState extends State<CameraScan> {
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: (){
-                              takePicture;
+                            onTap: () async{
+
+                              await takePicture();
+
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(vertical: 5),
