@@ -17,6 +17,7 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         toolbarHeight: 30,
         leading: IconButton(
           onPressed: (){

@@ -70,6 +70,8 @@ class _EditProfileState extends State<EditProfile> {
     final size=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text("Edit Profile"),
         centerTitle: true,
         leading: IconButton(

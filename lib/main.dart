@@ -1,5 +1,6 @@
 import 'package:derm_aid/Screens/CameraScan.dart';
 import 'package:derm_aid/Screens/Dashboard.dart';
+import 'package:derm_aid/Screens/Result.dart';
 import 'package:derm_aid/Screens/SplashScreen.dart';
 import 'package:derm_aid/Screens/UserProfile.dart';
 import 'package:derm_aid/Services/Database/MongoDb.dart';

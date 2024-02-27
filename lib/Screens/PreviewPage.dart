@@ -62,7 +62,7 @@ class PreviewPage extends StatelessWidget {
       ),
     Expanded(
       child: InkWell(
-        onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Result())),
+        onTap: ()=>Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Result(picture: picture,))),
         child: Container(
           width: double.infinity,
           color: Color.fromRGBO(74, 213, 205, 1),
