@@ -1,10 +1,11 @@
+import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Screens/EditProfile.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileWidget extends StatelessWidget {
   const UserProfileWidget({super.key, required this.opt, required this.val});
   final List opt;
-  final List val;
+  final Map<int,dynamic> val;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,10 @@ class UserProfileWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(opt[index],
+                  Text(opt[index].toString(),
                     style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.w600),
                   ),
-                  Text(val[index],
+                  Text(val[index].toString(),
                     style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),
                   ),
                 ],

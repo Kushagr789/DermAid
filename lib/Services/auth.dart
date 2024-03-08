@@ -1,3 +1,4 @@
+import 'package:derm_aid/Data/Const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthServices{

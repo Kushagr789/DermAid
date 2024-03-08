@@ -1,5 +1,6 @@
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/LogIn.dart';
+import 'package:derm_aid/Services/Database.dart';
 import 'package:derm_aid/Services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -158,10 +159,10 @@ class _RegisterState extends State<Register> {
                               final message=await AuthServices().registration(email: emailCont.text, password: passCont.text);
                               if (message!.contains('Success')) {
                                 print("success");
+                                await Database().create(emailCont.text, nameCont.text);
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) => const LogIn()));
                               }
-                              print("unsuccesful");
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text(message)),
                               );

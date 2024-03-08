@@ -1,5 +1,6 @@
 import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Screens/EditProfile.dart';
+import 'package:derm_aid/Services/Database.dart';
 import 'package:derm_aid/Widgets/UserProfile_Widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,13 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+  }
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
@@ -68,20 +76,22 @@ class _UserProfileState extends State<UserProfile> {
                     backgroundImage: AssetImage('assets/images/download (7).jpg',),
                     radius: 50,
                   ),
-                  Text('Kush Saxena',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                  Text('kush@gmail.com',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.blueGrey))
+                  Text(UserProfileData.name,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                  Text(UserProfileData.email,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.blueGrey))
                 ],
               )
             ),
             Text("About Me",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 22),),
-            UserProfileWidget(opt: UserProfileData().aboutOpt, val: UserProfileData().aboutVal),
+            UserProfileWidget(opt: UserProfileData.aboutOpt, val: UserProfileData.aboutVal),
             SizedBox(height: 10,),
             Text("Other",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 22),),
-            UserProfileWidget(opt: UserProfileData().otherOpt, val: UserProfileData().otherVal)
+            UserProfileWidget(opt: UserProfileData.otherOpt, val: UserProfileData.otherVal)
 
           ],
         ),
       ),
     );
   }
+
+
 }

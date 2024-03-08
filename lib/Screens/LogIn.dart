@@ -1,5 +1,6 @@
 import 'package:derm_aid/Screens/Dashboard.dart';
 import 'package:derm_aid/Screens/Register.dart';
+import 'package:derm_aid/Services/Database.dart';
 import 'package:derm_aid/Services/auth.dart';
 import 'package:derm_aid/Services/shared_preference.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -134,6 +135,7 @@ class _LogInState extends State<LogIn> {
                                   final message=await AuthServices().login(email: emailCont.text, password: passCont.text);
                                   if (message!.contains('Success')) {
                                     Login_shared_preference().loginUser(userId: await FirebaseAuth.instance.currentUser?.uid.toString());
+                                    await Database().read(emailCont.text.trim());
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) => const Dashboard(),

@@ -1,3 +1,4 @@
+import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Screens/UserProfile.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             child: InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile()));
+
               },
               child: Container(
                 width: double.infinity,
@@ -40,8 +42,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       backgroundColor: Colors.white,
                       backgroundImage: AssetImage('assets/images/download (7).jpg',),
                     ),
-                    Text('Kush Saxena',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w600),),
-                    Text('kush@gmail.com',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,))
+                    Text(UserProfileData.name,style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w600),),
+                    Text(UserProfileData.email,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,))
                   ],
                 ),
               ),

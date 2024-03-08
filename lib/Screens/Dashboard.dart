@@ -131,7 +131,7 @@ class _DashboardState extends State<Dashboard> {
               decoration: BoxDecoration(
                   color: Color.fromRGBO(19, 35, 70, 1)
               ),
-              height: size.height*2,
+              height: size.height*1.1,
               width: double.infinity,
               child: Container(
                 width: double.infinity,
@@ -169,7 +169,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     Container(
                       width: double.infinity,
-                      height: size.height,
+                      height: size.height*0.6,
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),

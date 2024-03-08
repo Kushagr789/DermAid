@@ -93,28 +93,30 @@ final List<Map<String,dynamic>> feature=[
 }
 
 class UserProfileData{
-  List<String> aboutOpt=[
+  static String name="";
+  static String email="";
+  static List<String> aboutOpt=[
     "Gender",
     "Date Of Birth",
     "Height(cm)",
     "Weight(kg)"
   ];
-  List<String> aboutVal=[
-    "Male",
-    "21/09/2022",
-    "180",
-    "62"
-  ];
-  List<String> otherOpt=[
+  static Map<int,dynamic> aboutVal= {
+    0:"none",
+    1:"01/01/2000",
+    2:0,
+    3:0
+  };
+  static List<String> otherOpt=[
     "Medicine per day",
     "Diagnosis per week",
     "Get in bed",
     "Wake Up"
   ];
-  List<String> otherVal=[
-    "4",
-    "2",
-    "10:00 pm",
-    "06:00 am"
-  ];
+  static Map<int,dynamic> otherVal={
+    0:0,
+    1:0,
+    2:"10:00 pm",
+    3:"06:00 am"
+  };
 }
