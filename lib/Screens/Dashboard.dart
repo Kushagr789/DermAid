@@ -2,12 +2,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Screens/CameraScan.dart';
 import 'package:derm_aid/Screens/LogIn.dart';
+import 'package:derm_aid/Services/Database.dart';
 import 'package:derm_aid/Services/auth.dart';
 import 'package:derm_aid/Services/shared_preference.dart';
 import 'package:derm_aid/Widgets/Drawer.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../Data/Doctor.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -17,6 +21,12 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
@@ -41,7 +51,7 @@ class _DashboardState extends State<Dashboard> {
             centerTitle: true,
 
             title: Text(
-              "Hello Kush!",
+              "Hello "+UserProfileData.name+"!",
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -198,6 +208,11 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
     );
+  }
+
+  void getData() async{
+    await Database().read(FirebaseAuth.instance.currentUser!.email.toString());
+    await Database().getDocList();
   }
 }
 

@@ -4,19 +4,23 @@ import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../Data/Doctor.dart';
+
 class BookAppointment extends StatefulWidget {
-  const BookAppointment({super.key});
+  final Map<String,dynamic> doc;
+
+  const BookAppointment({super.key, required this.doc});
 
   @override
   State<BookAppointment> createState() => _BookAppointmentState();
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return Scaffold(
-
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -46,7 +50,6 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
               Container(
                 height: size.height*0.2,
-
                 padding: EdgeInsets.symmetric(horizontal: 24,),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +61,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(DoctorCardData().Doctors[0]['imgUrl']),
+                            image: AssetImage(Doctor.img[widget.doc['name'].toString()].toString()),
                             fit: BoxFit.cover
                           ),
                         boxShadow: [
@@ -79,14 +82,14 @@ class _BookAppointmentState extends State<BookAppointment> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(DoctorCardData().Doctors[0]['name'],
+                            Text("Dr."+widget.doc['name'],
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w700
                               ),
                             ),
-                            Text(DoctorCardData().Doctors[0]['spec'],
+                            Text("Dermatologist",
                               style: TextStyle(
                                   color: Color.fromRGBO(119, 128, 137, 1),
                                   fontSize: 18,
@@ -96,9 +99,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Rating(rating: DoctorCardData().Doctors[0]['rating'],size: 28.0,),
+                                Rating(rating: double.parse(widget.doc['rating'].toString()),size: 28.0,),
                                 Text(
-                                  "("+DoctorCardData().Doctors[0]['review'].toString()+")",
+                                  "("+widget.doc['reviews'].toString()+")",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
@@ -115,7 +118,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                   ],
                 ),
               ),
-              DoctorExtraData(size: size),
+              DoctorExtraData(size: size,doc:widget.doc),
               Container(
                 height: size.height*0.25,
 
@@ -177,9 +180,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                           fontWeight: FontWeight.w600
                       ),
                     ),
-                    Text(
-                      "Ipsum has been the industry's standard dummy text ever since the 1500s.Ipsum has been the industry's standard dummy text ever since the 1500s.",
-                      style: TextStyle(
+                    Text(widget.doc['bio'],
+                       style: TextStyle(
                         fontSize: 15,
                         color: Color.fromRGBO(119, 128, 137, 1)
                       ),
@@ -206,8 +208,8 @@ class _BookAppointmentState extends State<BookAppointment> {
 
 class DoctorExtraData extends StatelessWidget{
   final size;
-
-  const DoctorExtraData({super.key,required this.size});
+  final doc;
+  const DoctorExtraData({super.key,required this.size,required this.doc});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -231,7 +233,7 @@ class DoctorExtraData extends StatelessWidget{
 
                   ),
                 ),
-            Text("2100+",
+            Text(doc['patients'].toString()+"+",
               textAlign:TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -258,7 +260,7 @@ class DoctorExtraData extends StatelessWidget{
                       fontWeight: FontWeight.normal
                   ),
                 ),
-                Text("8 years+",
+                Text(doc['exp'].toString()+" years+",
                   textAlign:TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
@@ -287,7 +289,7 @@ class DoctorExtraData extends StatelessWidget{
                       fontWeight: FontWeight.normal
                   ),
                 ),
-                Text(DoctorCardData().Doctors[0]['rating'].toString(),
+                Text(doc['rating'].toString(),
                   textAlign:TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,

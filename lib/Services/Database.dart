@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:derm_aid/Data/Const.dart';
+import 'package:derm_aid/Data/Doctor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Database{
@@ -54,5 +55,14 @@ class Database{
     print("done");
   }
 
+
+  Future<void>getDocList() async{
+    FirebaseFirestore.instance.collection('Doctor').get().then((value){
+      for(var docSnap in value.docs){
+        Doctor.DocList.add(docSnap.data());
+        Doctor.DocNameList.add(docSnap['name']);
+      }
+    });
+  }
 
 }

@@ -3,6 +3,7 @@ import 'package:derm_aid/Screens/BookAppointment.dart';
 import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../Data/Doctor.dart';
 import '../Widgets/Drawer.dart';
 
 class DoctorSearch extends StatefulWidget {
@@ -37,7 +38,7 @@ class _DoctorSearchState extends State<DoctorSearch> {
             ),
             centerTitle: true,
             title: Text(
-              "Hello Kush!",
+              "Hello "+UserProfileData.name+"!",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -105,7 +106,7 @@ class _DoctorSearchState extends State<DoctorSearch> {
               decoration: BoxDecoration(
                 color: Color.fromRGBO(19, 35, 70, 1)
               ),
-              height: size.height*0.2*DoctorCardData().Doctors.length,
+              height: size.height*0.2*Doctor.DocNameList.length,
               width: double.infinity,
               child: Container(
                 width: double.infinity,
@@ -115,12 +116,12 @@ class _DoctorSearchState extends State<DoctorSearch> {
                 ),
                 padding: EdgeInsets.only(top: 20),
                 child: ListView.builder(
-                  itemCount: DoctorCardData().Doctors.length,
+                  itemCount: Doctor.DocList.length,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context,index){
-                    return InkWell(child: DoctorCard(index: index,size: size,data:DoctorCardData().Doctors[index]),
+                    return InkWell(child: DoctorCard(index: index,size: size,data:Doctor.DocList[index]),
                             onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>BookAppointment()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context,)=>BookAppointment( doc: Doctor.DocList[index],)));
                             },
                     );
                   },

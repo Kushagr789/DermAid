@@ -4,7 +4,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import '../Data/Doctor.dart';
 import '../Screens/CameraScan.dart';
 import '../Screens/DoctorSearch.dart';
 import '../Screens/Profile.dart';
@@ -109,8 +109,8 @@ class DoctorCard extends StatelessWidget{
               margin: EdgeInsets.only(left: 20,top: 15,bottom: 15,right: 7),
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(data['imgUrl'].toString()),
-                      fit: BoxFit.cover
+                      image: AssetImage(Doctor.img[data['name'].toString()].toString()),
+                      fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Color.fromRGBO(247, 247, 247, 1),width: 1,strokeAlign: BorderSide.strokeAlignInside)
@@ -126,14 +126,14 @@ class DoctorCard extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      data['name'],
+                      "Dr."+data['name'].toString(),
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700
                       ),
                     ),
                     Text(
-                      data['spec'],
+                      "Dermatologist",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
@@ -149,7 +149,7 @@ class DoctorCard extends StatelessWidget{
                         Container(
                           child: Row(
                             children: [
-                              Rating(rating: data['rating'],size: 14.0),
+                              Rating(rating: double.parse(data['rating'].toString()),size: 14.0),
                               Text(" "+data['rating'].toString(),
                                 style: TextStyle(
                                     fontSize: 14,
@@ -160,7 +160,7 @@ class DoctorCard extends StatelessWidget{
                           ),
                         ),
                         Container(
-                          child: Text(data['review'].toString()+" reviews",
+                          child: Text(int.parse(data['reviews'].toString()).toString()+" reviews",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Color.fromRGBO(119, 128, 137, 1)
@@ -181,7 +181,7 @@ class DoctorCard extends StatelessWidget{
 }
 
 class Rating extends StatelessWidget{
-  final   rating;
+  final  double rating;
   final size;
 
   const Rating({super.key,required this.rating,required this.size});
@@ -611,10 +611,7 @@ class _TimeSelectState extends State<TimeSelect>  {
             ),
           ),
         ),
-
-
       ],
-
     );
   }
 }
