@@ -28,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isviewed = prefs.getInt('onboard');
-    print(isviewed.toString());
   }
 
   @override

@@ -1,8 +1,13 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Screens/EditProfile.dart';
 import 'package:derm_aid/Services/Database.dart';
+import 'package:derm_aid/Services/Image.dart';
 import 'package:derm_aid/Widgets/UserProfile_Widget.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -12,6 +17,9 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+
+  File? _image;
+  final picker = ImagePicker();
   @override
   void initState() {
     // TODO: implement initState
@@ -72,9 +80,18 @@ class _UserProfileState extends State<UserProfile> {
               margin: EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/download (7).jpg',),
-                    radius: 50,
+                  Stack(
+                    children: [
+                      InkWell(
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(UserProfileData.imgUrl),
+                          radius: 50,
+                        ),
+                        onTap: (){
+                          _showpicker(context);
+                        },
+                      )
+                    ],
                   ),
                   Text(UserProfileData.name,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
                   Text(UserProfileData.email,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.blueGrey))
@@ -91,6 +108,50 @@ class _UserProfileState extends State<UserProfile> {
         ),
       ),
     );
+  }
+
+  void _showpicker(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Gallery'),
+                      onTap: () {
+                        getImage(ImageSource.gallery);
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      getImage(ImageSource.camera);;
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  void getImage(ImageSource source) async{
+    final pickedFile = await picker.pickImage(source: source);
+
+    setState(() {
+      if (pickedFile != null)  {
+        print(pickedFile.path);
+        _image = File(pickedFile.path);
+         ImageFile().uploadImageToFirebase(context, _image!);
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
 

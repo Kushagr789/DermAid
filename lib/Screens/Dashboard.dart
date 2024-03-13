@@ -10,6 +10,7 @@ import 'package:derm_aid/Widgets/Widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Data/Doctor.dart';
 
@@ -141,7 +142,7 @@ class _DashboardState extends State<Dashboard> {
               decoration: BoxDecoration(
                   color: Color.fromRGBO(19, 35, 70, 1)
               ),
-              height: size.height*1.1,
+              height: size.height*0.9,
               width: double.infinity,
               child: Container(
                 width: double.infinity,
@@ -155,6 +156,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       padding: EdgeInsets.only(top: 20,left: 24,right: 24),
+
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -166,6 +168,7 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                           Carousel(),
+                          SizedBox(height: size.height*0.04,),
                           Text("Explore",
                             style: TextStyle(
                               color: Colors.black,
@@ -179,14 +182,15 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     Container(
                       width: double.infinity,
-                      height: size.height*0.6,
+                      height: size.height*0.5,
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: FeatureData().feature.length,
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                            mainAxisSpacing: 15
+                            mainAxisSpacing: 20,
+                            crossAxisSpacing: 5
                       ),
                           itemBuilder: (context,index){
                             return Container(
@@ -213,6 +217,9 @@ class _DashboardState extends State<Dashboard> {
   void getData() async{
     await Database().read(FirebaseAuth.instance.currentUser!.email.toString());
     await Database().getDocList();
+    setState(() {
+
+    });
   }
 }
 

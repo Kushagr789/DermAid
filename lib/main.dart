@@ -14,7 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70'));
+  await Firebase.initializeApp(options: FirebaseOptions(apiKey: 'AIzaSyAg30b_DCn3QxdZWHkazgnnbzCUGBAlR5Y', appId: '1:534527630882:android:cfc813bd2337fa9729747b', messagingSenderId: '534527630882', projectId: 'dermaid-67a70',storageBucket: 'dermaid-67a70.appspot.com'));
   //await MongoDatabase.connect();
   SystemChrome.setPreferredOrientations(
     [

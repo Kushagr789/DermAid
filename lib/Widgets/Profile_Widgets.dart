@@ -1,3 +1,4 @@
+import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Widgets/chart/pie_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,14 +34,14 @@ class UserInfo extends StatelessWidget {
             margin: EdgeInsets.only(right: 20),
             child: CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIapXoWZ5z2gQlp9969vhAzkddlJCjxUVvLg&usqp=CAU',)
+                backgroundImage: NetworkImage(UserProfileData.imgUrl.toString(),)
             ),
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Alex Brazil",
+                Text(UserProfileData.name,
                   style: TextStyle(
                       fontSize: 19,
                       color: Colors.black,
@@ -53,7 +54,7 @@ class UserInfo extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.person,color: Color.fromRGBO(119, 128, 137, 1),),
-                        Text("Male, 28 y.o.",
+                        Text(UserProfileData.aboutVal[0],
                           style: TextStyle(
                               color:Color.fromRGBO(119, 128, 137, 1),
                               fontSize: 12

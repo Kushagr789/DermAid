@@ -330,8 +330,8 @@ class FeatureCard extends StatelessWidget{
               Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorSearch()));
           },
           child: Container(
-            height: 70,
-            width: 70,
+            height: 65,
+            width: 65,
             decoration: BoxDecoration(
               color: Color.fromRGBO(74, 213, 205, 1),
               borderRadius: BorderRadius.circular(35),

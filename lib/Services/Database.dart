@@ -1,3 +1,5 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:derm_aid/Data/Const.dart';
 import 'package:derm_aid/Data/Doctor.dart';
@@ -16,6 +18,7 @@ class Database{
       'height': 0,
       'weight': 0,
       'mpd': 0,
+      'img':"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgB730p0ChSl_CNr5N6n05AGzEtEAhFypOFg&usqp=CAU",
     });
   }
 
@@ -25,6 +28,7 @@ class Database{
     if(snapshot.exists){
       UserProfileData.name=snapshot['name'];
       UserProfileData.email=snapshot['email'];
+      UserProfileData.imgUrl=snapshot['img'];
       UserProfileData.aboutVal.addAll({
         0:snapshot['gender'],
         1:snapshot['dob'],
@@ -51,6 +55,7 @@ class Database{
       'weight':weight,
       'mpd':mpd,
       'dpw':dpw,
+      'img':UserProfileData.imgUrl,
     });
     print("done");
   }

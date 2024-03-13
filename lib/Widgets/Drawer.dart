@@ -40,7 +40,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     CircleAvatar(
                       radius: 45,
                       backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/images/download (7).jpg',),
+                      backgroundImage: NetworkImage(UserProfileData.imgUrl),
                     ),
                     Text(UserProfileData.name,style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w600),),
                     Text(UserProfileData.email,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,))

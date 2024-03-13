@@ -134,8 +134,8 @@ class _LogInState extends State<LogIn> {
                                 if (_formKey.currentState!.validate()) {
                                   final message=await AuthServices().login(email: emailCont.text, password: passCont.text);
                                   if (message!.contains('Success')) {
-                                    Login_shared_preference().loginUser(userId: await FirebaseAuth.instance.currentUser?.uid.toString());
                                     await Database().read(emailCont.text.trim());
+                                    Login_shared_preference().loginUser(userId: await FirebaseAuth.instance.currentUser?.uid.toString(),email: emailCont.text.trim());
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) => const Dashboard(),

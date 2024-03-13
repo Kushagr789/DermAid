@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -94,6 +96,7 @@ final List<Map<String,dynamic>> feature=[
 
 class UserProfileData{
   static String name="";
+  static String imgUrl="";
   static String email="";
   static List<String> aboutOpt=[
     "Gender",

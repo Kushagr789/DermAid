@@ -8,7 +8,7 @@ class Login_shared_preference{
       return true;
     return false;
   }
-  Future<Null>loginUser({required String? userId}) async{
+  Future<Null>loginUser({required String? userId,required String? email}) async{
     final SharedPreferences prefs=await SharedPreferences.getInstance();
     prefs.setString('userId', userId.toString());
   }
