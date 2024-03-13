@@ -34,11 +34,19 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.blue,
+        color: Color.fromRGBO(74, 213, 205, 0.1),
         child: Center(
-          child: Text("DermAid",
-            style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),
-          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Derm",
+                style: TextStyle(fontSize: 60,fontWeight: FontWeight.w900,color: Color.fromRGBO(19, 35, 70, 1),),
+              ),
+              Text("Aid",
+                style: TextStyle(fontSize: 60,fontWeight: FontWeight.w900,color: Color.fromRGBO(74, 213, 205, 1)),
+              ),
+            ],
+          )
         ),
       )
     );

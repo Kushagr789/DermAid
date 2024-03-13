@@ -41,7 +41,17 @@ class _RegisterState extends State<Register> {
               Container(
                 child: Column(
                   children: [
-                    Text("DermAID",style: TextStyle(fontSize: 45,fontWeight: FontWeight.w700),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Derm",
+                          style: TextStyle(fontSize: 50,fontWeight: FontWeight.w900,color: Color.fromRGBO(19, 35, 70, 1),),
+                        ),
+                        Text("Aid",
+                          style: TextStyle(fontSize: 50,fontWeight: FontWeight.w900,color: Color.fromRGBO(74, 213, 205, 1)),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: size.height*0.025,),
                     Text("Let's empower your skin health",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w200),),
                   ],
