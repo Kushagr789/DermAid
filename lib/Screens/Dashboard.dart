@@ -142,7 +142,7 @@ class _DashboardState extends State<Dashboard> {
               decoration: BoxDecoration(
                   color: Color.fromRGBO(19, 35, 70, 1)
               ),
-              height: size.height*0.9,
+              height: size.height,
               width: double.infinity,
               child: Container(
                 width: double.infinity,

@@ -440,8 +440,7 @@ class _DateSelectState extends State<DateSelect> {
             dayStrStyle: TextStyle(
                 color: Color.fromRGBO(119, 128, 137, 1),
                 fontSize: 18
-            ),
-          )
+            ),          )
         ),
     );
   }

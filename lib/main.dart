@@ -1,4 +1,5 @@
 
+import 'package:derm_aid/Screens/Reminders.dart';
 import 'package:derm_aid/Screens/SplashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

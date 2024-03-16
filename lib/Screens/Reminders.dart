@@ -1,12 +1,11 @@
 import 'package:derm_aid/Data/Const.dart';
+import 'package:derm_aid/Data/ReminderData.dart';
+import 'package:derm_aid/Widgets/ReminderWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 
 import 'package:table_calendar/table_calendar.dart';
-
-
-
-
 class Reminders extends StatefulWidget {
   const Reminders({super.key});
 
@@ -18,42 +17,25 @@ class _RemindersState extends State<Reminders> {
   List<DateTime> currentMonthList = List.empty();
   DateTime currentDateTime = DateTime.now();
   TimeOfDay reminderTime=TimeOfDay.now();
-
   DateTime _focusedDate=DateTime.now();
   DateTime? _selectedDate;
   late ScrollController scrollController;
-
   String medName="",medPower="",medQuantity="";
   var _isExpanded=false;
-
   var visible=0;
-
-
-
-
   Map<String,List> dateEvents={};
   List<Map> reminderList=[];
-
-
-
-
-
 
   @override
   void initState() {
     // TODO: implement initState
-
     _selectedDate=_focusedDate;
     _isExpanded=false;
     super.initState();
-
   }
   var size;
-
-
   @override
   Widget build(BuildContext context) {
-
     size=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +43,6 @@ class _RemindersState extends State<Reminders> {
         leadingWidth: 80,
         leading: IconButton(
           color: Colors.white,
-
           icon: Icon(Icons.arrow_back_ios,size: 25,),
           onPressed: (){
             Navigator.pop(context);
@@ -75,14 +56,11 @@ class _RemindersState extends State<Reminders> {
             ),
           )
         ],
-
-
       ),
       body: Container(
         width: size.width,
         height: size.height,
         color: Color.fromRGBO(19, 35, 70, 1),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -122,7 +100,6 @@ class _RemindersState extends State<Reminders> {
                     ),
                     calendarStyle: CalendarStyle(
 
-
                       selectedTextStyle: TextStyle(
                           color: Colors.white,
                           fontSize: 25,
@@ -151,8 +128,6 @@ class _RemindersState extends State<Reminders> {
                       selectedDecoration: BoxDecoration(
                           color: Color.fromRGBO(42, 207, 198, 1),
                           shape: BoxShape.rectangle
-
-
                       ),
                     ),
                     daysOfWeekStyle: DaysOfWeekStyle(
@@ -270,39 +245,9 @@ class _RemindersState extends State<Reminders> {
                 padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                 child: Container(
                   child: ListView.builder(
-                    itemCount: reminderList.length+1,
-                    
+                    itemCount: ReminderData.reminderList.length,
                     itemBuilder: (context,index){
-                      return Container(
-                        margin: EdgeInsets.all(10),
-                        height: size.height*0.15,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(249, 249, 249, 1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          border: Border.all(color: Color.fromRGBO(220, 220, 220, 1),width: 2),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(220, 220, 220, 0.25),
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                            )
-                             ],
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Column(
-                                children: [
-
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
+                      return ReminderWidget(index: index,);
                     },
                   ),
                 ),
@@ -327,10 +272,17 @@ class _RemindersState extends State<Reminders> {
                     ),
                   ),
                 ),
-                onTap: ()=>showModalBottomSheet(
+                onTap: (){showModalBottomSheet(
                     context: context,
-                    builder: (context)=> buildSheet()
-                ),
+                    builder: (context)=> buildSheet(context)
+                ).then((value) {
+                  setState(() {
+
+                  });
+                });
+
+                }
+
               ),
             )
 
@@ -342,341 +294,9 @@ class _RemindersState extends State<Reminders> {
 
   }
 
-  Widget buildSheet() {
+  Widget buildSheet(context) {
 
-    return StatefulBuilder(builder: (BuildContext context,StateSetter setState)
-      {
-        return Container(
-          padding: EdgeInsets.only(top: 50,),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        visible=0;
-                      });
-                    },
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        color: (visible==0)?Color.fromRGBO(42, 207, 198, 1):Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(color: Color.fromRGBO(220, 220, 220, 1),width: 2),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(220, 220, 220, 0.25),
-                            offset: Offset(4,4),
-                            blurRadius: 2,
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.apple,size: 45,color: (visible==0)?Colors.white:Color.fromRGBO(42, 207, 198, 1)),
-                          Text('Pills',
-                            style: TextStyle(
-                                color: (visible==0)?Colors.white:Color.fromRGBO(42, 207, 198, 1),
-
-                                fontSize: 14
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        visible=1;
-                      });
-                    },
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: (visible==1)?Color.fromRGBO(42, 207, 198, 1):Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          border: Border.all(color: Color.fromRGBO(220, 220, 220, 1),width: 2),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(220, 220, 220, 0.25),
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.apple,size: 45,color: (visible==1)?Colors.white:Color.fromRGBO(42, 207, 198, 1)),
-                          Text('Ointment',
-                            style: TextStyle(
-                                color: (visible==1)?Colors.white:Color.fromRGBO(42, 207, 198, 1),
-
-                                fontSize: 14
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        visible=2;
-                      });
-                    },
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: (visible==2)?Color.fromRGBO(42, 207, 198, 1):Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          border: Border.all(color: Color.fromRGBO(220, 220, 220, 1),width: 2),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(220, 220, 220, 0.25),
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.apple,size: 45,color: (visible==2)?Colors.white:Color.fromRGBO(42, 207, 198, 1)),
-                          Text('Consult',
-                            style: TextStyle(
-                                color: (visible==2)?Colors.white:Color.fromRGBO(42, 207, 198, 1),
-
-                                fontSize: 14
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        visible=3;
-                      });
-                    },
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: (visible==3)?Color.fromRGBO(42, 207, 198, 1):Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          border: Border.all(color: Color.fromRGBO(220, 220, 220, 1),width: 2),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(220, 220, 220, 0.25),
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.apple,size: 45,color: (visible==3)?Colors.white:Color.fromRGBO(42, 207, 198, 1)),
-                          Text('Scan',
-                            style: TextStyle(
-                              color: (visible==3)?Colors.white:Color.fromRGBO(42, 207, 198, 1),
-
-                              fontSize: 14
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 20,),
-                child: Column(
-                  children: [
-                    TextField(
-                      onChanged: (text){
-                        medName=text;
-                      },
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: InputDecoration(
-                          hintText: (visible==2)?"Doctor's Name":(visible==3)?'Custom Message':'Medicine Name'
-                      ),
-                    ),
-                    (visible<1)?Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Flexible(
-                          child: TextField(
-                            onChanged: (text){
-                              medPower=text;
-                            },
-                            textCapitalization: TextCapitalization.sentences,
-                            keyboardType: TextInputType.number,
-                            maxLength: 4,
-                            decoration: InputDecoration(
-                              hintText: 'mg',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Flexible(
-                          child: TextField(
-                            onChanged: (text){
-                              medQuantity=text;
-                            },
-                            textCapitalization: TextCapitalization.sentences,
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            decoration: InputDecoration(
-                              hintText: 'Quantity',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ):SizedBox(),
-                  ],
-                ),
-
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Time',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16
-                            ),
-
-                          ),
-                          InkWell(
-                            onTap: (){
-                              showTimePicker(
-                                  context: context,
-                                  initialTime: TimeOfDay.now()
-                              ).then((value) {
-                                setState(() {
-                                  reminderTime=value!;
-                                });
-                              });
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: Color.fromRGBO(42, 207, 198, 0.1)
-                              ),
-                              child: Text(
-                                reminderTime.format(context).toString(),
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-
-                  ],
-                ),
-              ),
-
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: InkWell(
-                  child: Container(
-                    width: size.width,
-                    height: size.height*0.08,
-                    color: Color.fromRGBO(42, 207, 198, 1),
-                    child: Center(
-                      child: Text(
-                        'Add Reminder',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700
-                        ),
-                      ),
-                    ),
-                  ),
-                  onTap: (){
-                    Map<String,String> data={};
-
-                    switch(visible)
-                        {
-                      case 0:
-                        data.update('case', (value) => '0');
-                        data.update('name', (value) => medName);
-                        data.update('power', (value) => medPower);
-                        data.update('quantity', (value) => medQuantity);
-                        data.update('time', (value) => reminderTime.format(context).toString());
-                        reminderList.add(data);
-                        dateEvents.update(_selectedDate!.day.toString(), (value) => reminderList);
-                        break;
-                      case 1:
-                        data.update('case', (value) => '1');
-                        data.update('name', (value) => medName);
-                        data.update('power', (value) => "");
-                        data.update('quantity', (value) => "");
-                        data.update('time', (value) => reminderTime.format(context).toString());
-                        reminderList.add(data);
-                        dateEvents.update(_selectedDate!.day.toString(), (value) => reminderList);
-                        break;
-                      case 2:
-                        data.update('case', (value) => '2');
-                        data.update('name', (value) => medName);
-                        data.update('power', (value) => "");
-                        data.update('quantity', (value) => "");
-                        data.update('time', (value) => reminderTime.format(context).toString());
-                        reminderList.add(data);
-                        dateEvents.update(_selectedDate!.day.toString(), (value) => reminderList);
-                        break;
-                      case 3:
-                        data.update('case', (value) => '3');
-                        data.update('name', (value) => medName);
-                        data.update('power', (value) => "");
-                        data.update('quantity', (value) => "");
-                        data.update('time', (value) => reminderTime.format(context).toString());
-                        reminderList.add(data);
-                        dateEvents.update(_selectedDate!.day.toString(), (value) => reminderList);
-                        break;
-
-                    }
-
-                  }
-                ),
-              )
-            ],
-          ),
-        );
-      }
-    );
+    return AddReminder();
   }
 
 
