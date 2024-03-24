@@ -71,3 +71,16 @@ class Database{
   }
 
 }
+class Disease{
+  Future read(String name) async{
+    final doc=FirebaseFirestore.instance.collection('Disease').doc('Acne');
+    final snapshot=await doc.get();
+    if(snapshot.exists)
+      {
+
+      return snapshot;}
+    else
+      return null;
+
+  }
+}

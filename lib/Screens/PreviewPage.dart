@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:derm_aid/Screens/Result.dart';
+import 'package:derm_aid/Services/Database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -60,26 +61,31 @@ class PreviewPage extends StatelessWidget {
         height: size.height*0.71,
         child: Image.file(File(picture.path),fit: BoxFit.cover,width: 250,),
       ),
-    Expanded(
+      Expanded(
       child: InkWell(
-        onTap: ()=>Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Result(picture: picture,))),
-        child: Container(
-          width: double.infinity,
-          color: Color.fromRGBO(74, 213, 205, 1),
-          child: Center(
-            child: Text(
-              "Next",
-              style: TextStyle(color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24),
-            ),
-          ),
-        ),
-      ),
+        onTap: () async{
+          var data=await Disease().read('Acne');
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) => Result(picture: picture,data: data)));
+        },
+    child: Container(
+    width: double.infinity,
+    color: Color.fromRGBO(74, 213, 205, 1),
+    child: Center(
+    child: Text(
+    "Next",
+    style: TextStyle(color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 24),
+    ),
+    ),
+    ),
+    ),
     )
     ],
     ),
 
     );
+    }
   }
-}
+

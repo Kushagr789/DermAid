@@ -52,6 +52,7 @@ dependencies:
   cloud_firestore: ^4.15.6
   intl: ^0.19.0
   tflite_flutter: ^0.10.4
+  tflite: ^1.1.2
   image_picker: ^1.0.7
   path: ^1.9.0
   firebase_storage: ^11.6.10
@@ -73,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/Model/cnn_model.tflite
 
   #   - images/a_dot_ham.jpeg
 
