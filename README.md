@@ -69,3 +69,7 @@ samples, guidance on mobile development, and a full API reference.
 - **shared_preferences:**
   - A Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
   - Check out its usage at https://pub.dev/packages/shared_preferences.
+
+
+## Mobile Application Demo Video
+- Here's demonstration of the working application. [link](https://drive.google.com/file/d/12YXexWqZhgZULfneYpYcRfdFMEGg9vVF/view?usp=drive_link)
