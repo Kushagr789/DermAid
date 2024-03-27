@@ -70,6 +70,21 @@ samples, guidance on mobile development, and a full API reference.
   - A Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
   - Check out its usage at https://pub.dev/packages/shared_preferences.
 
+## App Screens
+  <img src="assets/Screenshots/Login-register.png" alt="Alt Text" width="600" height="400">
+  <div style="display: flex; justify-content: space-between;">
+    <img src="assets/Screenshots/Dashboard.png" alt="Dashboard" width="500" />
+    <img src="assets/Screenshots/reminder.png" alt="Reminders" width="500" />
+  </div>
+  <div style="display: flex; justify-content: space-between;">
+    <img src="assets/Screenshots/scan.png" alt="Scan" width="500" />
+    <img src="assets/Screenshots/Result.png" alt="Result" width="500" />
+  </div>
+  <div style="display: flex; justify-content: space-between;">
+    <img src="assets/Screenshots/search.png" alt="Search" width="500" />
+    <img src="assets/Screenshots/consult.png" alt="Book Appointment" width="500" />
+  </div>
+
 
 ## Mobile Application Demo Video
 - Here's demonstration of the working application. [link](https://drive.google.com/file/d/12YXexWqZhgZULfneYpYcRfdFMEGg9vVF/view?usp=drive_link)
