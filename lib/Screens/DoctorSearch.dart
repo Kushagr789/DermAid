@@ -49,7 +49,7 @@ class _DoctorSearchState extends State<DoctorSearch> {
               Container(
                 margin: EdgeInsets.only(right: 20),
                 child: CircleAvatar(
-                    backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIapXoWZ5z2gQlp9969vhAzkddlJCjxUVvLg&usqp=CAU',)
+                    backgroundImage: NetworkImage(UserProfileData.imgUrl.toString(),)
                 ),
               )
             ],

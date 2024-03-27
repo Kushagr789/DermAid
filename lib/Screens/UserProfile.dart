@@ -43,6 +43,7 @@ class _UserProfileState extends State<UserProfile> {
         ),
       ),
       body: Container(
+        color: Colors.white,
         width: double.infinity,
         padding: EdgeInsets.only(left: 18,right: 18,bottom: 20,top: 10),
         child: Column(

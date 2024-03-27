@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:derm_aid/Widgets/NumStepper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'PreviewPage.dart';
 
 class CameraScan extends StatefulWidget {
@@ -244,7 +245,26 @@ class _CameraScanState extends State<CameraScan> {
 
                           )
                         ),
-                        const Spacer(),
+                        Expanded(
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(Icons.photo_library,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            onPressed: () async{
+                              final picker = ImagePicker();
+                              final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+                              if (pickedImage != null) {
+                                XFile picture=pickedImage;
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>PreviewPage(
+                                  picture: picture,
+                                )));
+                              }
+                              },
+                            )
+                        ),
                       ],),
                     ),
                   ],

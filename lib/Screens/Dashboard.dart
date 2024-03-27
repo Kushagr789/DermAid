@@ -122,7 +122,7 @@ class _DashboardState extends State<Dashboard> {
                     right: 20,
                     child: Container(
                         height: size.height*0.18,
-                        width: size.width*0.35,
+                        width: size.width*0.36,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage("assets/images/solar_round-graph-outline.jpg"),

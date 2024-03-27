@@ -194,18 +194,60 @@ class _BookAppointmentState extends State<BookAppointment> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        color: Color.fromRGBO(74, 213, 205, 1),
-        height: 60,
-        child: Center(
-          child: Text("Book Appointment",
-          style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.w600),),
+      floatingActionButton: InkWell(
+        onTap: (){
+          _showConfirmationDialog(context);
+        },
+        child: Container(
+          color: Color.fromRGBO(74, 213, 205, 1),
+          height: 60,
+          child: Center(
+            child: Text("Book Appointment",
+              style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.w600),),
+          ),
         ),
-      ),
+      )
+
     );
   }
 }
-
+void _showConfirmationDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Confirm Appointment'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Doctor: '),
+            SizedBox(height: 8),
+            Text('Date: ${DateTime.now().toIso8601String().substring(0, 10)}'), // Example date
+            SizedBox(height: 8),
+            Text('Time: ${TimeOfDay.now().format(context)}'), // Example time
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Add logic to confirm appointment
+              Navigator.of(context).pop();
+              // You can add additional logic here, such as saving the appointment
+            },
+            child: Text('Confirm'),
+          ),
+        ],
+      );
+    },
+  );
+}
 class DoctorExtraData extends StatelessWidget{
   final size;
   final doc;

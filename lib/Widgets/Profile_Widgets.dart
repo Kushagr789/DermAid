@@ -215,7 +215,12 @@ class BioData extends StatelessWidget {
                     ),)
                   ],
                 ),
-                Icon(Icons.arrow_forward_ios,color: Colors.black,size: 25,)
+                Container(
+                  width: 200,
+                  height: 100,
+                  padding: EdgeInsets.all(2),
+                  child: BarChartCont(),
+                )
               ],
             ),
           ),

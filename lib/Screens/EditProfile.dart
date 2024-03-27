@@ -1,5 +1,4 @@
 import 'package:derm_aid/Data/Const.dart';
-import 'package:derm_aid/Screens/UserProfile.dart';
 import 'package:derm_aid/Services/Database.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +74,7 @@ class _EditProfileState extends State<EditProfile> {
         child: Container(
           width: double.infinity,
           height: size.height*1.1,
+          color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 18),
           child: Form(
             key: _formKey,

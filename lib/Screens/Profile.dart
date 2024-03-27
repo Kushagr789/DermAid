@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Color.fromRGBO(19, 35, 70, 1),
         leadingWidth: 80,
         centerTitle: true,
-        title: Text("Profile",
+        title: Text("Reports",
           style: TextStyle(
             color: Colors.white,
             fontSize: 22,
