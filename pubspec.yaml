@@ -75,6 +75,7 @@ flutter:
   assets:
     - assets/images/
     - assets/Model/cnn_model.tflite
+    - assets/Model/converted_model.tflite
 
   #   - images/a_dot_ham.jpeg
 

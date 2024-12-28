@@ -64,9 +64,9 @@ class PreviewPage extends StatelessWidget {
       Expanded(
       child: InkWell(
         onTap: () async{
-          var data=await Disease().read('Acne');
+
           Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) => Result(picture: picture,data: data)));
+              builder: (context) => Result(picture: picture,)));
         },
     child: Container(
     width: double.infinity,
